@@ -10,13 +10,13 @@
     <title>Document</title>
 </head>
 
-<body class="bg-green1 md:my-16">
+<body class="bg-green1 md:mt-16 md:mb-8">
     <div class="container text-center">
         <div class="flex-wrap md:flex justify-between px-3">
-            <h3 class="text-3xl sm:text-5xl mt-0 xs:mt-2 font-bold my-3">
-                The Ultimate Moive Quiz
+            <h3 class="text-2xl sm:text-5xl mt-0 xs:mt-2 font-bold mb-2">
+                The Ultimate Movie Quiz
             </h3>
-            <h3 class="text-lg sm:text-3xl font-bold my-3 sm:self-end">
+            <h3 class="text-lg sm:text-3xl font-bold my-1 sm:self-end">
                 Current Score: <span class="text-yellow-400">8</span>
             </h3>
         </div>
@@ -99,7 +99,19 @@
             </div>
         </div>
     </div>
-    <form class="flex justify-center">
+    <div class="flex container">
+        <div class="flex-shrink text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">
+            Item that can shrink if needed
+        </div>
+        <div class="flex-shrink text-gray-800 text-center bg-gray-500 px-4 py-2 m-2">
+            Item that cannot shrink below its initial size
+        </div>
+        <div class="flex-shrink text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">
+            Item that can shrink if needed
+        </div>
+    </div>
+
+    <!-- <form class="flex justify-center">
         <div class="flex justify-center text-center py-2">
             <button class="flex-shrink-0 bg-teal-500 text-sm text-white py-1 px-2 rounded" type="button">
 					<i
@@ -113,7 +125,7 @@
 					></i>
 				</button>
         </div>
-    </form>
+    </form> -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="script.js "></script>
