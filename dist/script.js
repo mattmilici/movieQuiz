@@ -1,4 +1,5 @@
 $("#hideBtn").on("click", hideFunction);
+$("#cardViewAgain").on("click", hideFunction);
 
 $("#textChat").hide();
 
