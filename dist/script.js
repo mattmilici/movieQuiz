@@ -1,6 +1,6 @@
 $("#hideBtn").on("click", hideFunction);
 
-$("#cardView").hide();
+$("#textChat").hide();
 
 function hideFunction() {
     var buttonStatus = $("#hideBtn").attr("id");

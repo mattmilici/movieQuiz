@@ -16,6 +16,7 @@ module.exports = {
             "screen/3": "calc(100vh * .65)",
             "screen/4": "calc(100vh / 4)",
             "screen/5": "calc(100vh * .1)",
+            "screen/6": "calc(100vh * .07)",
             "screen/1": "100vh",
         }),
     },

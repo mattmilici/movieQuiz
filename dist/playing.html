@@ -122,26 +122,29 @@
     <div id="cardView">
         <div class="max-w-sm rounded overflow-hidden shadow-lg m-auto">
             <img class="w-auto h-screen/3 m-auto" src="https://upload.wikimedia.org/wikipedia/en/6/64/Movie_poster_Anchorman_The_Legend_of_Ron_Burgundy.jpg" alt="Sunset in the mountains" />
-            <div class="px-6 py-4">
-                <div class="text-center font-bold text-xl m-auto mb-2 bg-lime1 mx-4 my-2 p-2 rounded-lg">
+            <div class="px-6 py-3">
+                <div class="text-center font-bold text-xl m-auto mb-2 bg-lime1 my-2 p-2 rounded-lg">
                     Anchorman
                 </div>
+                <div class="flex">
+                    <div id="userTextField" class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 px-1 py-2 w-4/5">
+                        <input class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full text-gray-700 py-3 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
+                    </div>
+                    <button id="startTyping" class="flex-initial rounded-full h-14 w-14 flex items-center justify-center w-1/5">
+							<i class="fa fa-arrow-up fa-2x"></i>
+						</button>
+                </div>
             </div>
-            <div class="flex justify-around h-screen/5">
-                <button class="rounded-full h-16 w-16 flex items-center justify-center">
+            <div class="flex justify-around h-screen/6">
+                <button class="rounded-full flex items-center justify-center">
 						<i class="fa fa-ambulance fa-2x"></i>
 					</button>
-                <button class="rounded-full h-16 w-16 flex items-center justify-center">
+                <button id="hideBtn" class="rounded-full flex items-center justify-center">
 						<i class="fa fa-comments fa-2x"></i>
-					</button>
-                <button class="rounded-full h-16 w-16 flex items-center justify-center">
-						<i class="fa fa-arrow-up fa-2x"></i>
 					</button>
             </div>
         </div>
     </div>
-
-    <button id="hideBtn" class="bg-blue">text</button>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="script.js "></script>
