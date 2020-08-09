@@ -7,9 +7,10 @@ module.exports = {
         },
         colors: {
             green1: "#eeeeee",
-            tan1: "#ffffdd",
-            baby1: "#cbeaed",
-            lime1: "#d3de32",
+            tan1: "#84a9ac",
+            baby1: "#e4e3e3",
+            lime1: "#bbd196",
+            bluem1: "#84a9ac",
         },
         height: (theme) => ({
             "screen/2": "50vh",
