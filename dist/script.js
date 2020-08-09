@@ -7,16 +7,14 @@ $("#textChat").hide();
 $("#multipleChoiceDiv").hide();
 
 function hideFunction() {
-    var buttonStatus = $("#hideBtn").attr("id");
+    var buttonStatus = $(this).attr("id");
 
     if (buttonStatus === "hideBtn") {
-        $("#textChat").hide();
-        $("#hideBtn").attr("id", "showBtn");
-        $("#cardView").show();
-    } else {
         $("#textChat").show();
-        $("#showBtn").attr("id", "hideBtn");
         $("#cardView").hide();
+    } else {
+        $("#textChat").hide();
+        $("#cardView").show();
     }
 }
 
