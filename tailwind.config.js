@@ -6,7 +6,7 @@ module.exports = {
             padding: "2rem",
         },
         colors: {
-            green1: "#006a71",
+            green1: "#eeeeee",
             tan1: "#ffffdd",
             baby1: "#cbeaed",
             lime1: "#d3de32",
