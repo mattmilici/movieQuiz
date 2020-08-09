@@ -1,6 +1,7 @@
 $("#hideBtn").on("click", hideFunction);
 $("#cardViewAgain").on("click", hideFunction);
 $("#multipleChoice").on("click", multipleChoice);
+$("#submitBtnMultiple").on("click", multipleChoiceSubmit);
 
 $("#textChat").hide();
 $("#multipleChoiceDiv").hide();
@@ -32,4 +33,13 @@ function multipleChoice() {
         $("#hideBtn").hide();
         $("#multipleChoiceDiv").show();
     } else {}
+}
+
+function multipleChoiceSubmit() {
+    $("#multipleChoice").show();
+    $("#hideBtn").show();
+    $("#userTextField").show();
+    $("#startTyping").show();
+    $("#grouping").show();
+    $("#multipleChoiceDiv").hide();
 }
