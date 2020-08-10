@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+
+<body class="bg-green1 md:mt-12 md:mb-8">
+    <div class="container text-center relative">
+        <div class="text-center">
+            <h3 class="font-mono text-2xl sm:text-5xl mt-0 xs:mt-2 font-bold mb-2">
+                Movie Memory
+            </h3>
+        </div>
+        <div class="max-w-sm rounded overflow-hidden shadow-lg m-auto bg-bluem1 relative">
+            <div id="cardView"></div>
+            <div id="roundsHeader" class="font-mono text-center font-bold text-xl m-auto mb-1 p-2 rounded-lg opacity-100 animate-bounce">
+                Round: 10 <span></span>
+            </div>
+            <img id="currentMovieImage" class="opacity-25 w-auto h-screen/7 mt-1 m-auto rounded-lg" src="https://upload.wikimedia.org/wikipedia/en/6/64/Movie_poster_Anchorman_The_Legend_of_Ron_Burgundy.jpg" alt="Sunset in the mountains" />
+            <div class="px-6 py-3">
+                <div id="currentMovieTitle" class="opacity-25 font-mono text-center font-bold text-xl m-auto mb-2 bg-lime1 my-2 p-2 rounded-lg">
+                    Anchorman
+                </div>
+                <div id="multipleChoiceDiv" class="pt-5">
+                    <div class="flex justify-around m-2">
+                        <button id="actor1" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
+								Chase Roossin
+							</button>
+                        <button id="actor2" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
+								Chase Roossin
+							</button>
+                    </div>
+                    <div class="flex justify-around m-2">
+                        <button id="actor3" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
+								Chase Roossin
+							</button>
+                        <button id="actor4" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
+								Chase Roossin
+							</button>
+                    </div>
+                    <button id="submitBtnMultiple" class="rounded-full flex justify-center m-auto">
+							<i class="fa fa-arrow-up fa-2x"></i>
+						</button>
+                </div>
+                <div class="flex">
+                    <div id="userTextField" class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 px-1 py-2 w-4/5 opacity-25">
+                        <input class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full text-gray-700 py-3 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
+                    </div>
+                    <button id="startTyping" class="flex-initial rounded-full h-14 w-14 flex items-center justify-center w-1/5 opacity-25">
+							<i class="fa fa-arrow-up fa-2x"></i>
+						</button>
+                </div>
+            </div>
+            <div id="grouping" class="flex justify-around h-screen/6">
+                <button id="multipleChoice" class="opacity-25 rounded-full flex items-center justify-center">
+						<i class="fa fa-ambulance fa-2x"></i>
+					</button>
+
+                <button id="hideBtn" class="opacity-25 rounded-full flex items-center justify-center">
+						<i class="fa fa-history fa-2x"></i>
+					</button>
+            </div>
+            <!-- //------------------------ instructions button ----------------------------// -->
+            <div id="UserInstructionsDiv" class="bg-blueLight1 absolute bottom-0 left-0">
+                <div class="flex justify-between border">
+                    <div class="bg-blue-100 border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                        <p id="instructionsHeader" class="font-bold text-left">
+                            Score Tracker
+                        </p>
+                        <p id="instructionsDescr" class="text-sm text-left">
+                            The Score Tracker displays your current score. Each correct answer will add +1.
+                        </p>
+                    </div>
+                    <div class="inline-flex">
+                        <button id="nextButton" class="nextButton1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+								Next
+							</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="howto.js "></script>
+</body>
+
+</html>

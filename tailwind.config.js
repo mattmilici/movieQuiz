@@ -11,6 +11,7 @@ module.exports = {
             baby1: "#e4e3e3",
             lime1: "#bbd196",
             bluem1: "#84a9ac",
+            blueLight1: "#b2ebf2",
         },
         height: (theme) => ({
             "screen/2": "50vh",
