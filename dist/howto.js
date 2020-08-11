@@ -88,7 +88,7 @@ $(document).ready(function() {
 
             $("#instructionsHeader").text("User Answer");
             $("#instructionsDescr").text(
-                "This is where you enter your answer and hit the up arrow to submit. PS Make sure the spelling is correct!"
+                "This is where you enter your answer and submit your answer. PS Make sure the spelling is correct!"
             );
             $("#nextButton").addClass("nextButton3");
             $("#nextButton").removeClass("nextButton2");
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
             $("#instructionsHeader").text("Life Line");
             $("#instructionsDescr").text(
-                "This button will provide 4 options for you to choose from. Be careful! You only get three life lines per game!"
+                "This button provides 4 multiple choice answers. Be careful! You only get three life lines per game!"
             );
             $("#nextButton").addClass("nextButton4");
             $("#nextButton").removeClass("nextButton3");
@@ -137,7 +137,7 @@ $(document).ready(function() {
 
             $("#instructionsHeader").text("That's it!");
             $("#instructionsDescr").text(
-                "Select Play and let's test your movie knowledge!"
+                "So you think you're a movie Buff? Let's test your knowledge!"
             );
 
             $("#nextButton").addClass("nextButton6");

@@ -6,12 +6,13 @@ module.exports = {
             padding: "2rem",
         },
         colors: {
-            green1: "#eeeeee",
+            green1: "#323232",
             tan1: "#84a9ac",
             baby1: "#e4e3e3",
             lime1: "#bbd196",
-            bluem1: "#596e79",
+            bluem1: "#eeeeee",
             blueLight1: "#b2ebf2",
+            black: "#000000",
         },
         height: (theme) => ({
             "screen/2": "50vh",
