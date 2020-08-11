@@ -14,7 +14,7 @@
     <div class="container text-center">
         <div class="text-center">
             <h3 class="font-mono text-2xl sm:text-5xl mt-0 xs:mt-2 font-bold mb-2">
-                Movie Memory
+                Buff
             </h3>
         </div>
     </div>
@@ -102,29 +102,29 @@
             </div>
         </div>
         <div class="container">
-            <!-- <div class="flex-shrink-0 text-gray-800 text-center bg-gray-500 px-1 py-2">
-                <input class="min-w-19 rounded-full appearance-none bg-transparent border-none w-full text-gray-700 py-3 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
-            </div> -->
             <div class="flex justify-center sm:justify-center">
-                <!-- <div class="flex-shrink text-center bg-gray-400 px-5 py-2">
-                    <i class="fa fa-ambulance fa-2x rounded-full h-16 w-16 flex items-center justify-center"></i>
-                </div> -->
                 <div id="cardViewAgain" class="text-center bg-gray-400 px-5 py-2">
                     <i class="fa fa-history fa-2x bg-white rounded-full h-16 w-16 flex justify-center"></i>
                 </div>
-                <!-- <div class="flex-shrink text-gray-700 text-center bg-gray-400 px-5 py-2">
-                    <i class="fa fa-arrow-up fa-2x bg-white rounded-full h-16 w-16 flex items-center justify-center"></i>
-                </div> -->
             </div>
         </div>
     </div>
     <div id="cardView">
         <div class="max-w-sm rounded overflow-hidden shadow-lg m-auto bg-bluem1">
-            <div class="font-mono text-center font-bold text-xl m-auto mb-1 p-2 rounded-lg">
-                Round: <span id="userCurrentScore">1</span>
+            <div class="flex justify-between">
+                <div class="font-mono text-left font-bold text-md mx-2 my-1 p-1 rounded-lg">
+                    Round: <span id="userCurrentScore">1</span>
+                </div>
+                <div class="font-mono text-right font-bold text-md mx-2 my-1 p-1 rounded-lg">
+                    High Score: <span id="userCurrentScore">1</span>
+                </div>
             </div>
+
             <img class="w-auto h-screen/7 mt-1 m-auto rounded-lg shadow-3xl" src="https://upload.wikimedia.org/wikipedia/en/6/64/Movie_poster_Anchorman_The_Legend_of_Ron_Burgundy.jpg" alt="Sunset in the mountains" />
             <div class="px-6 py-3">
+                <div class="font-mono text-left font-bold text-sm my-2">
+                    Enter an actor in:
+                </div>
                 <div class="font-mono text-center font-bold text-xl m-auto mb-2 bg-lime1 my-2 p-2 rounded-lg">
                     Anchorman
                 </div>
@@ -150,8 +150,8 @@
 						</button>
                 </div>
                 <div class="flex">
-                    <div id="userTextField" class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 px-1 py-2 w-4/5">
-                        <input class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full text-gray-700 py-3 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
+                    <div id="userTextField" class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 py-2 w-4/5">
+                        <input class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full px-1 text-gray-700 py-3 leading-tight focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
                     </div>
                     <button id="startTyping" class="flex-initial rounded-full h-14 w-14 flex items-center justify-center w-1/5">
 							<i class="fa fa-arrow-up fa-2x"></i>

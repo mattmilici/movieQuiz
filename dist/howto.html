@@ -14,13 +14,19 @@
     <div class="container text-center relative">
         <div class="text-center">
             <h3 class="font-mono text-2xl sm:text-5xl mt-0 xs:mt-2 font-bold mb-2">
-                Movie Memory
+                Buff
             </h3>
         </div>
         <div class="max-w-sm rounded overflow-hidden shadow-lg m-auto bg-bluem1 relative">
             <div id="cardView"></div>
-            <div id="roundsHeader" class="font-mono text-center font-bold text-xl m-auto mb-1 p-2 rounded-lg opacity-100 animate-bounce">
-                Round: 10 <span></span>
+
+            <div id="roundsHeader" class="flex justify-between animate-bounce opactiy-100">
+                <div class="font-mono text-left font-bold text-md mx-2 my-1 p-1 rounded-lg">
+                    Round: <span id="userCurrentScore">1</span>
+                </div>
+                <div class="font-mono text-right font-bold text-md mx-2 my-1 p-1 rounded-lg">
+                    High Score: <span id="userCurrentScore">1</span>
+                </div>
             </div>
             <img id="currentMovieImage" class="opacity-25 w-auto h-screen/7 mt-1 m-auto rounded-lg" src="https://upload.wikimedia.org/wikipedia/en/6/64/Movie_poster_Anchorman_The_Legend_of_Ron_Burgundy.jpg" alt="Sunset in the mountains" />
             <div class="px-6 py-3">
