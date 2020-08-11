@@ -140,18 +140,16 @@ $(document).ready(function() {
                 "Select Play and let's test your movie knowledge!"
             );
 
-            $("#nextButton").addClass("nextButton5");
-            $("#nextButton").removeClass("nextButton4");
+            $("#nextButton").addClass("nextButton6");
+            $("#nextButton").removeClass("nextButton5");
             $("#nextButton").text("Play!");
-            var newScore = currentClass.text();
-        } else if (newScore === "Play!") {
-            changePage();
-            console.log("working");
+        } else {
+            $("#nextButton").attr("id", "playBtn");
         }
     }
+    $(document).on("click", "#playBtn", changePage);
 
     function changePage() {
-        var url = "./playing.html";
-        window.location.href = url;
+        location.href = "playing.html";
     }
 });

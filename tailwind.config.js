@@ -10,7 +10,7 @@ module.exports = {
             tan1: "#84a9ac",
             baby1: "#e4e3e3",
             lime1: "#bbd196",
-            bluem1: "#84a9ac",
+            bluem1: "#596e79",
             blueLight1: "#b2ebf2",
         },
         height: (theme) => ({
