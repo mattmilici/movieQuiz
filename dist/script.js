@@ -27,7 +27,7 @@ $(document).ready(function() {
             $("#multipleChoice").hide();
             $("#hideBtn").hide();
             $("#userTextField").hide();
-            $("#startTyping").hide();
+            $("#userSubmit").hide();
             $("#grouping").hide();
             $("#hideBtn").hide();
             $("#multipleChoiceDiv").show();
@@ -38,7 +38,7 @@ $(document).ready(function() {
         $("#multipleChoice").show();
         $("#hideBtn").show();
         $("#userTextField").show();
-        $("#startTyping").show();
+        $("#userSubmit").show();
         $("#grouping").show();
         $("#multipleChoiceDiv").hide();
     }
