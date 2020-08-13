@@ -1,17 +1,10 @@
+//
 // var trialMovies = ["Anchorman, Memento, Space Jam, Django, Ocean's 11"];
-var api = "a610c6a9537cc833aef3465e46fba9e6";
 // var userInput;
 // var currentMovie;
 // var currentActor;
 // var userMovie;
 // var userActor;
-var currentActorId;
-var movieID;
-var movieCastMember;
-var MovieCastArray = [];
-var currentScore = 0;
-var startRunningScripts = false;
-
 // //plan on making this function more robust, for now just going to be using it to input data already availible in html file
 // initGame();
 // function initGame() {
@@ -90,13 +83,32 @@ var startRunningScripts = false;
 
 //This function takes the actor the user inputs and pulls back a random movie they have been in. It will update the movietitle and image in the html.
 
-$("#userSubmit").on("click", function() {
-    //Grabs user inputs
+var currentActorId;
+var movieID;
+var movieCastMember;
+var MovieCastArray = [];
+var currentScore = 0;
+var startRunningScripts = false;
+
+$("#userSubmit").on("click", standardGame);
+
+function standardGame() {
+    var movieArrayLength = MovieCastArray.length;
+
+    if (movieArrayLength === 0) {
+        userInput = $("#userInput").val();
+        firstRound();
+    }
+    if (movieArrayLength !== 0) {
+        userInput = $("#userInput").val();
+        secondRoundForward();
+    }
+}
+
+function firstRound() {
     userInput = $("#userInput").val();
     $.ajax({
-        url: "https://api.themoviedb.org/3/search/person?api_key=" +
-            api +
-            "&language=en-US&query=" +
+        url: "https://api.themoviedb.org/3/search/person?api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&query=" +
             userInput +
             "&page=1&include_adult=false",
         method: "GET",
@@ -122,34 +134,45 @@ $("#userSubmit").on("click", function() {
         var queryLink =
             "https://api.themoviedb.org/3/movie/" +
             movieID +
-            "/credits?api_key=" +
-            api +
-            "&page=1&include_adult=false";
+            "/credits?api_key=a610c6a9537cc833aef3465e46fba9e6&page=1&include_adult=false";
         $.ajax({
             url: queryLink,
             method: "GET",
         }).then(function(result) {
             //this provides the first 20 actors listed on the cast sheet. We can increase this if needed.
             MovieCastArray = [];
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 40; i++) {
                 movieCastMember = result.cast[i].name;
                 MovieCastArray.push(movieCastMember);
             }
-            currentScore++;
-        });
-    });
-});
+            var MovieCastArrayPop = MovieCastArray.indexOf(userInput);
+            MovieCastArray.splice(MovieCastArrayPop, 1);
 
-function userResponseBack() {
-    console.log(userInput);
-    // MovieCastArray = MovieCastArray.pop(userInput);
+            $("#actor1").text(MovieCastArray[0]);
+            $("#actor2").text(MovieCastArray[1]);
+            $("#actor3").text(MovieCastArray[2]);
+            $("#actor4").text(MovieCastArray[3]);
+        });
+        $("#userInput").val("");
+    });
+}
+
+function secondRoundForward() {
+    userInput = $("#userInput").val();
     var answerCheck = MovieCastArray.indexOf(userInput);
 
     if (answerCheck !== -1) {
-        $("#computerSubmision").text("correct");
+        firstRound();
         currentScore++;
         $("#userCurrentScore").text(currentScore);
+        console.log("it's working");
+        $("#userInput").val("");
+        $("#actor1").text(MovieCastArray[0]);
+        $("#actor2").text(MovieCastArray[1]);
+        $("#actor3").text(MovieCastArray[2]);
+        $("#actor4").text(MovieCastArray[3]);
     } else {
-        $("#computerSubmision").text("incorrect");
+        $("#computerSubmision").text("incorrect you lose!");
+        console.log(MovieCastArray);
     }
 }
