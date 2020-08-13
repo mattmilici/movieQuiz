@@ -89,24 +89,27 @@ var movieCastMember;
 var MovieCastArray = [];
 var currentScore = 0;
 var startRunningScripts = false;
+var userAnswersArray = [];
+var ComputerMovieIdArray = [];
 
 $("#userSubmit").on("click", standardGame);
 
 function standardGame() {
     var movieArrayLength = MovieCastArray.length;
-
     if (movieArrayLength === 0) {
-        userInput = $("#userInput").val();
         firstRound();
     }
     if (movieArrayLength !== 0) {
-        userInput = $("#userInput").val();
         secondRoundForward();
     }
 }
 
 function firstRound() {
+    //creates an array of user answers. This is how we can make sure the user doesn't enter the same actor twice in one game
     userInput = $("#userInput").val();
+    userAnswersArray.push(userInput);
+
+    //call request from movie API
     $.ajax({
         url: "https://api.themoviedb.org/3/search/person?api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&query=" +
             userInput +
@@ -139,12 +142,13 @@ function firstRound() {
             url: queryLink,
             method: "GET",
         }).then(function(result) {
-            //this provides the first 20 actors listed on the cast sheet. We can increase this if needed.
+            //this provides the first 40 actors listed on the cast sheet. We can increase this if needed.
             MovieCastArray = [];
             for (let i = 0; i < 40; i++) {
                 movieCastMember = result.cast[i].name;
                 MovieCastArray.push(movieCastMember);
             }
+            //this removes the actor the user just entered so they can't use it twice
             var MovieCastArrayPop = MovieCastArray.indexOf(userInput);
             MovieCastArray.splice(MovieCastArrayPop, 1);
 
@@ -153,26 +157,56 @@ function firstRound() {
             $("#actor3").text(MovieCastArray[2]);
             $("#actor4").text(MovieCastArray[3]);
         });
+        //Clears user text input
         $("#userInput").val("");
     });
 }
 
 function secondRoundForward() {
+    // gets the users current input
     userInput = $("#userInput").val();
+    // checks to make sure that it is not on the array of answers by making sure this function returns a -1
+    var repeatAnswer = userAnswersArray.indexOf(userInput);
+    // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
     var answerCheck = MovieCastArray.indexOf(userInput);
-
-    if (answerCheck !== -1) {
+    console.log(repeatAnswer);
+    console.log(userAnswersArray);
+    if (answerCheck !== -1 && repeatAnswer === -1) {
+        //Runs the first round script again
         firstRound();
+
+        //Adds 1 to the user Score
         currentScore++;
         $("#userCurrentScore").text(currentScore);
-        console.log("it's working");
+
+        //Clears user text input
         $("#userInput").val("");
+
+        //Provides the first 4 actors in the movie. We will need to add a script that adds actors not in the movie
         $("#actor1").text(MovieCastArray[0]);
         $("#actor2").text(MovieCastArray[1]);
         $("#actor3").text(MovieCastArray[2]);
         $("#actor4").text(MovieCastArray[3]);
     } else {
-        $("#computerSubmision").text("incorrect you lose!");
-        console.log(MovieCastArray);
+        //Tells the user they were wrong and asks them to restart by typing a name. Also removes the movie poster
+        $("#computerSubmision").text(
+            "incorrect you lose! Enter a name below to restart!"
+        );
+        $("#moviePoster").attr("src", "");
+
+        //updates highscore if the users current game is better
+        let userHighScore = parseInt($("#userHighScore").text());
+        let userCurrentScore = parseInt($("#userCurrentScore").text());
+        if (userCurrentScore > userHighScore) {
+            $("#userHighScore").text(userCurrentScore);
+        }
+
+        //Sets current score equal to zero again
+        currentScore = 0;
+        $("#userCurrentScore").text(currentScore);
+        //Clears user text input
+        $("#userInput").val("");
+        userAnswersArray = [];
+        MovieCastArray = [];
     }
 }
