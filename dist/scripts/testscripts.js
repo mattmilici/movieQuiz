@@ -79,7 +79,9 @@ function getRandomActors() {
 
         randomActor = actors[Math.floor(Math.random() * (actors.length - 1))];
 
-        displayActor(randomActor.id);
+        actorId = randomActor.id;
+
+        displayActor(actorId);
 
     });
 
@@ -121,8 +123,8 @@ function getMovies() {
 
 }
 
-function chooseNextActor () {
-    
+function chooseNextActor(id) {
+
     var tempid = moviesObjects[moviesObjectsIndex][0].id;
     console.log(tempid);
 
@@ -138,10 +140,11 @@ function chooseNextActor () {
 
         var movies = response.cast;
         var randnum = Math.floor(Math.random() * (movies.length - 1));
-
+        console.log(response.cast[randnum]);
         displayActor(response.cast[randnum].id);
 
-        
+
+
 
     });
 };
@@ -154,7 +157,7 @@ function chooseNextActor () {
 function displayActor(actorid) {
 
 
-    
+
 
     //console.log(randomActor.id);
 
@@ -170,13 +173,20 @@ function displayActor(actorid) {
     }).then(function (response) {
 
 
-        //console.log(response);
+        console.log(response);
 
         //console.log(response);
-        $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500/" + response.profile_path);
-        $("#computerSubmision").text(response.name);
+        if (response.profile_path) {
+            $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500/" + response.profile_path);
+            $("#computerSubmision").text(response.name);
+            console.log("random actor id ");
+            console.log(randomActor.id);
+            getFilmography(response.id);
+        }
+        else {
+            chooseNextActor();
+        }
 
-        getFilmography(randomActor.id);
 
     });
 
@@ -235,12 +245,14 @@ function displayMovie() {
 
 //AJAX method - https://developers.themoviedb.org/3/people/get-person-movie-credits
 
-function getFilmography(actorId) {
+function getFilmography(e) {
 
-
+    console.log("e ",e);
     filmography.length = 0;
 
-    let creditURL = "https://api.themoviedb.org/3/person/" + actorId + "/movie_credits?api_key=" + movieApi + "&language=en-US";
+    moviesObjects = [];
+
+    let creditURL = "https://api.themoviedb.org/3/person/" + e + "/movie_credits?api_key=" + movieApi + "&language=en-US";
 
 
     $.ajax({
@@ -251,8 +263,7 @@ function getFilmography(actorId) {
 
     }).then(function (response) {
 
-        moviesObjects = [];
-
+        console.log("this is running");
 
         response.cast.forEach(function (item) {
 
@@ -261,7 +272,7 @@ function getFilmography(actorId) {
 
         })
 
-        //console.log(response);
+        console.log(response);
 
         for (var i = 0; i < response.cast.length; i++) {
             moviesObjects[i] = [new movieObject(response.cast[i].original_title, response.cast[i].id)];
@@ -291,25 +302,27 @@ function checkAnswer() {
 
     //console.log(keys.indexOf(userInput) > 0);
 
+    console.log(moviesObjects);
+
     for (var q = 0; q < moviesObjects.length; q++) {
         if (userInput === moviesObjects[q][0].title) {
             console.log("success");
             moviesObjectsIndex = q;
             currentScore++;
             $("#userCurrentScore").text(currentScore);
+            $("#userInput").val("");
             flag = true;
             break;
         }
-        
+
     }
     console.log("flag: " + flag);
-    if(flag){
-        chooseNextActor();
-    }
-    else {
+    if (flag) {
+        chooseNextActor(moviesObjects[moviesObjectsIndex][0].id);
+    } else {
         //put losing code here
     }
-    
+
 
 }
 
