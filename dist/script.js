@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#multipleChoice").on("click", multipleChoice);
     $("#submitBtnMultiple").on("click", multipleChoiceSubmit);
 
+    $("#gameStyle").hide();
     $("#textChat").hide();
     $("#multipleChoiceDiv").hide();
 
@@ -43,3 +44,9 @@ $(document).ready(function() {
         $("#multipleChoiceDiv").hide();
     }
 });
+
+//all new
+$("#startPlayingButton").on("click", gameStyleScreen);    function gameStyleScreen() {
+    $("#gameStyle").show();
+    $("#welcomeScreen").hide();
+}    //all new end

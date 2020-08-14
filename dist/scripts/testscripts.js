@@ -25,6 +25,10 @@ var moviesSeen = [];
 
 var moviesObjects = [];
 
+var moviesObjectsIndex;
+
+var actorId;
+
 
 //Note: Consider randomly selecting pages with each actor/movie question
 
@@ -33,9 +37,7 @@ var moviesObjects = [];
 //Note: Query a different actor if profile_path == null?
 
 
-getActors();
-
-getMovies();
+initGame();
 
 //Object to store movie data
 
@@ -51,7 +53,11 @@ class movieObject {
 
 //AJAX query - https://developers.themoviedb.org/3/people/get-popular-people
 
-function getActors() {
+function initGame() {
+    getRandomActors();
+};
+
+function getRandomActors() {
 
     let randomPage = Math.floor(Math.random() * 10 + 1);
 
@@ -69,7 +75,11 @@ function getActors() {
 
         //Comment this out if you're displaying movies in getMoves()
 
-        displayActor();
+        actorIndex = Math.floor(Math.random() * (actors.length - 1));
+
+        randomActor = actors[Math.floor(Math.random() * (actors.length - 1))];
+
+        displayActor(randomActor.id);
 
     });
 
@@ -111,21 +121,44 @@ function getMovies() {
 
 }
 
+function chooseNextActor () {
+    
+    var tempid = moviesObjects[moviesObjectsIndex][0].id;
+    console.log(tempid);
+
+    let movieURL = "https://api.themoviedb.org/3/movie/" + tempid + "/credits?api_key=" + movieApi;
+
+    $.ajax({
+
+        url: movieURL,
+
+        method: "GET"
+
+    }).then(function (response) {
+
+        var movies = response.cast;
+        var randnum = Math.floor(Math.random() * (movies.length - 1));
+
+        displayActor(response.cast[randnum].id);
+
+        
+
+    });
+};
+
 
 //Renders a random actor's profile picture with response data from getActors()
 
 //AJAX method - https://developers.themoviedb.org/3/people/get-person-details
 
-function displayActor() {
+function displayActor(actorid) {
 
 
-    actorIndex = Math.floor(Math.random() * (actors.length - 1));
-
-    randomActor = actors[Math.floor(Math.random() * (actors.length - 1))];
+    
 
     //console.log(randomActor.id);
 
-    let profileURL = "https://api.themoviedb.org/3/person/" + randomActor.id + "?api_key=" + movieApi + "&language=en-US";
+    let profileURL = "https://api.themoviedb.org/3/person/" + actorid + "?api_key=" + movieApi + "&language=en-US";
 
 
     $.ajax({
@@ -252,6 +285,8 @@ function checkAnswer() {
 
     let userInput = $("#userTextField").find("input").val();
 
+    var flag = false;
+
     //console.log(keys);
 
     //console.log(keys.indexOf(userInput) > 0);
@@ -259,12 +294,22 @@ function checkAnswer() {
     for (var q = 0; q < moviesObjects.length; q++) {
         if (userInput === moviesObjects[q][0].title) {
             console.log("success");
+            moviesObjectsIndex = q;
             currentScore++;
             $("#userCurrentScore").text(currentScore);
+            flag = true;
+            break;
         }
+        
     }
-
-    displayActor();
+    console.log("flag: " + flag);
+    if(flag){
+        chooseNextActor();
+    }
+    else {
+        //put losing code here
+    }
+    
 
 }
 
@@ -275,7 +320,7 @@ function checkAnswer() {
 
 //------------------------ DELETE THIS LISTENER ---------------------------
 
-$("body").on("click", displayMovie);
+//$("body").on("click", displayMovie);
 
 
 //Switch between filmography and movieCredits
