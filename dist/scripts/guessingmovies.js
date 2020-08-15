@@ -1,139 +1,213 @@
-//everything is working at this pointvar startRunningScripts = false;
-var MovieCastArray = [];
+
+let movieApi = "a610c6a9537cc833aef3465e46fba9e6";
+
+var currentScore = 0;
+
+//let giphyApi = "1I9K6gwnF2ljgEW2mzK2VdGc4CU7iX8g";
+//Globals for guessing movies an actor has been in
+var actors;
+var actorIndex;
+var randomActor;
+var filmography = [];
+
+
+//Globals for guessing an actor in a random movie
+
+var movies;
+var randomMovie;
+var movieCredits = [];
 var userAnswersArray = [];
-var ComputerMovieIdArray = [];
-var apiKey = "api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&query";
-var apiDomain = "https://api.themoviedb.org/3/"; //score related items
-var remainingLife = 3;
-var currentScore = 0; //Button Pressed by user to submit an answer
-$("#userSubmit").on("click", standardGame); //StandardGame function is what determines if the first or second round script should run. If the movie cast array equals zero, then computer knows to run the firstRound Script which will not provide any points. The seconds round script will run after that and check to make sure the user isn't inputting the same actor twice. It also adds points to the current score.
-function standardGame() {
-    var movieArrayLength = MovieCastArray.length;
-    if (movieArrayLength === 0) {
-        var userInput = $("#userInput").val();
-        userAnswersArray.push(userInput);
+var moviesObjects = [];
+var moviesObjectsIndex = 0;
+var actorId;
+var round = 0;
+var userLives = 3;
+var previousComputerQuestions = [];
+var start = true;
+var movieList = [];
+var firstUserInput;
+var currentMovieId;
+
+
+//Note: Consider randomly selecting pages with each actor/movie question
+
+//Note: Query a different movie if backdrop == null?
+
+//Note: Query a different actor if profile_path == null?
+
+
+//Object to store movie data
+
+class movieObject {
+    constructor(title, id) {
+        this.title = title;
+        this.id = id;
+    }
+};
+
+
+
+
+
+function checkRound() {
+
+    if (round === 0) {
         firstRound();
+    } else {
+        checkAnswer();
     }
-    if (movieArrayLength !== 0) {
-        secondRoundForward();
-        console.log(userAnswersArray);
-    }
-} //firstRoundScript takes the users input and generate a movie they've been in based off of the actors ID. We then run the getListMoviesFromActorID to ger a list of the movies the actors been in.
+};
+
 function firstRound() {
-    //creates an array of user answers. This is how we can make sure the user doesn't enter the same actor twice in one game
-    userInput = $("#userInput").val();
-    // userAnswersArray.push(userInput);
-    // console.log(userAnswersArray);
-    //call request from movie API
-    $.ajax({
-        url: apiDomain +
-            "search/person?" +
-            apiKey +
-            "&language=en-US&query=" +
-            userInput +
-            "&page=1&include_adult=false",
-        method: "GET",
-    }).then(function (e) {
-        var actorIdNumber = e.results[0].id;
-        getListOfMoviesFromActorID(actorIdNumber);
-    });
-}
+    var tempmovie = $("#userInput").val();
+    
 
-function getListOfMoviesFromActorID(actorIdNumber) {
-    // console.log(actorIdNumber);
-    //Takes the actors ID and finds all the movies they've been in.
-    $.ajax({
-        url: apiDomain +
-            "person/" +
-            actorIdNumber +
-            "/movie_credits?" +
-            apiKey +
-            "&language=en-US",
-        method: "GET",
-    }).then(function (movieList) {
-        //setting a random movie title on screen. This represents the computers answers and will always be a movie the actor was in.
-        console.log(movieList);
-        var randomNumber = Math.floor(Math.random() * 4);
-        console.log(randomNumber);
-        var movieCastArrayLength = movieList.cast.length - 1;
-        if (randomNumber > movieCastArrayLength) {
-            firstRound();
-        }
-        var movieTitle = movieList.cast[randomNumber].title;
-        var moviePoster = movieList.cast[randomNumber].poster_path;
-        console.log(MovieRepeatCheck); //Grabs the poster for the movie generated above and displays it on screen.        //this gets a list of Actors that were in the movie
-        var movieID = movieList.cast[randomNumber].id;
-        var MovieRepeatCheck = ComputerMovieIdArray.indexOf(movieID);
-        if (movieCastArrayLength === 0 && MovieRepeatCheck !== -1) {
-            userWins();
-        } else if (
-            MovieRepeatCheck !== -1 ||
-            moviePoster === null ||
-            movieTitle === undefined ||
-            movieID === -1
-        ) {
-            // console.log("true");
-            firstRound();
-        } else {
-            ComputerMovieIdArray.push(movieID);
-            console.log(ComputerMovieIdArray);
-            // Adds new movie Poster Image to HTML
-            console.log(moviePoster);
-            $("#moviePoster").attr(
-                "src",
-                "https://image.tmdb.org/t/p/w500" + moviePoster
-            );
-            $("#computerSubmision").text(movieTitle);
-            console.log("there is a movie title");
-            getMovieCastMembers(movieID);
-        }
-    });
-}
+    var roundurl = "https://api.themoviedb.org/3/search/movie?api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&query=" + tempmovie + "&page=1&include_adult=false&page=1&include_adult=false";
 
-function userWins() {
-    $("#computerSubmision").text(
-        "Dang! I can't think of anything.... you win! Enter a another actors name to play again!"
-    );
-    currentScore = 0;
-    $("#userCurrentScore").text(currentScore);
-    //Clears user text input
-    $("#userInput").val("");
-    userAnswersArray = [];
-    MovieCastArray = [];
-}
-
-function getMovieCastMembers(movieID) {
-    $.ajax({
-        url: apiDomain +
-            "movie/" +
-            movieID +
-            "/credits?" +
-            apiKey +
-            "&page=1&include_adult=false",
-        method: "GET",
-    }).then(function (result) {
-        //this provides the first 40 actors listed on the cast sheet. We can increase this if needed.
-        MovieCastArray = [];
-        console.log(result);
-        for (let i = 0; i < result.cast.length; i++) {
-            var movieCastMember = result.cast[i].name;
-            MovieCastArray.push(movieCastMember);
-        }
-        //this removes the actor the user just entered so they can't use it twice
-        var MovieCastArrayPop = MovieCastArray.indexOf(userInput);
-        MovieCastArray.splice(MovieCastArrayPop, 1);
-        console.log(MovieCastArray);
-        //Clears user text input
+     $.ajax({
+        url: roundurl,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
         $("#userInput").val("");
+        firstUserInput = response.results[0].id;
+        chooseNextActor(response.results[0].id);
+    });
+
+    round++;
+
+}
+
+//Gets a random page of Actors and stores it in actors array
+
+//AJAX query - https://developers.themoviedb.org/3/people/get-popular-people
+
+function getRandomActors() {
+
+    let randomPage = Math.floor(Math.random() * 10 + 1);
+
+    let actorURL = "https://api.themoviedb.org/3/person/popular?api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&page=" + randomPage;
+
+
+    $.ajax({
+        url: actorURL,
+        method: "GET"
+    }).then(function (response) {
+        //console.log(response);
+
+        actors = response.results;
+
+        //Comment this out if you're displaying movies in getMoves()
+
+        actorIndex = Math.floor(Math.random() * (actors.length - 1));
+
+        randomActor = actors[Math.floor(Math.random() * (actors.length - 1))];
+
+        actorId = randomActor.id;
+
+        displayActor(actorId);
+
     });
 }
 
-function secondRoundForward() {
+
+function chooseNextActor(id) {
+
+    currentMovieId = id;
+    var tempid = id;
+    console.log(tempid);
+    let movieURL = "https://api.themoviedb.org/3/movie/" + tempid + "/credits?api_key=" + movieApi;
+
+    $.ajax({
+        url: movieURL,
+        method: "GET"
+    }).then(function (response) {
+        var movies = response.cast;
+        var randnum = Math.floor(Math.random() * (20));
+        console.log(response.cast[randnum]);
+        displayActor(response.cast[randnum].id);
+    });
+};
+
+//Renders a random actor's profile picture with response data from getActors()
+
+//AJAX method - https://developers.themoviedb.org/3/people/get-person-details
+
+function displayActor(actorid) {
+
+    let profileURL = "https://api.themoviedb.org/3/person/" + actorid + "?api_key=" + movieApi + "&language=en-US";
+
+    $.ajax({
+        url: profileURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        //console.log(response);
+        if (response.profile_path && (response.popularity > 2) && (previousComputerQuestions.indexOf(response.name) === -1)) {
+            $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500/" + response.profile_path);
+            $("#computerSubmision").text(response.name);
+            //console.log("random actor id ");
+            //console.log(randomActor.id);
+            getFilmography(response.id);
+            previousComputerQuestions.push(response.name);
+        } else if (round > 1) {
+            chooseNextActor(currentMovieId);
+        } 
+        else if (round === 1) {
+            console.log("first user input was recalled");
+            chooseNextActor(firstUserInput);
+        } else{
+            console.log("stuck");
+        }
+    });
+}
+
+
+//Sets our filmography array
+
+//AJAX method - https://developers.themoviedb.org/3/people/get-person-movie-credits
+
+function getFilmography(e) {
+
+    //console.log("e ", e);
+    filmography.length = 0;
+    moviesObjects = [];
+    movieList = [];
+
+    let creditURL = "https://api.themoviedb.org/3/person/" + e + "/movie_credits?api_key=" + movieApi + "&language=en-US";
+    $.ajax({
+        url: creditURL,
+        method: "GET"
+    }).then(function (response) {
+        response.cast.forEach(function (item) {
+            filmography.push(item.original_title);
+        })
+        for (var i = 0; i < response.cast.length; i++) {
+            moviesObjects[i] = [new movieObject(response.cast[i].original_title, response.cast[i].id)];
+            movieList.push(response.cast[i].original_title);
+        }
+        //console.log(response);
+        console.log(movieList);
+    })
+}
+
+
+function checkAnswer() {
+
+
+
+    for (var q = 0; q < moviesObjects.length; q++) {
+        movieCredits.push(moviesObjects[q][0].title);
+        if (userInput === moviesObjects[q][0].title) {
+            console.log("success");
+            moviesObjectsIndex = q;
+        }
+    }
     // gets the users current input
     userInput = $("#userInput").val(); // checks to make sure that it is not on the array of answers by making sure this function returns a -1
     var repeatAnswer = userAnswersArray.indexOf(userInput);
     // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
-    var answerCheck = MovieCastArray.indexOf(userInput);
+    var answerCheck = movieCredits.indexOf(userInput);
     // console.log(repeatAnswer);
     // console.log(answerCheck);
     if (answerCheck !== -1 && repeatAnswer === -1) {
@@ -141,16 +215,19 @@ function secondRoundForward() {
         //Adds 1 to the user Score
         currentScore++;
         $("#userCurrentScore").text(currentScore);
+        $("#userInput").val("");
         //Runs the first round script again
-        firstRound();
+        chooseNextActor(moviesObjects[moviesObjectsIndex][0].id);
         //Clears user text input
         // $("#userInput").val("");
-    } else if (remainingLife > 1) {
+        round++;
+        moviesObjectsIndex = 0;
+    } else if (userLives > 1) {
         $("#computerSubmision").text(
-            "Nope! You now have " + (remainingLife - 1) + " lives left"
+            "Nope! You now have " + (userLives - 1) + " lives left"
         );
-        $("#life" + remainingLife).hide();
-        remainingLife--;
+        $("#life" + userLives).hide();
+        userLives--;
         //Clears user text input
         $("#userInput").val("");
     } else {
@@ -173,6 +250,24 @@ function secondRoundForward() {
         //Clears user text input
         $("#userInput").val("");
         userAnswersArray = [];
-        MovieCastArray = [];
+        movieCredits = [];
     }
+
+
 }
+
+
+//For testing response data
+
+//Change between displayMovie and displayActor functions for different game
+
+//------------------------ DELETE THIS LISTENER ---------------------------
+
+//$("body").on("click", displayMovie);
+
+
+//Switch between filmography and movieCredits
+
+
+
+$("#userSubmit").on("click", checkRound);
