@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+
+<body class="bg-green1 md:mt-12 md:mb-8">
+    <div class="container text-center">
+        <div class="text-center">
+            <h3 class="font-mono text-2xl sm:text-5xl mt-0 xs:mt-2 font-bold mb-2 text-bluem1">
+                Buff
+            </h3>
+        </div>
+    </div>
+    <div id="textChat">
+        <div class="container text-center">
+            <div id="currentGameHistory"
+                class="overflow-auto h-screen/3 mb-3 md:mb-5 border-2 border-solid border-black bg-baby1 rounded-lg">
+            </div>
+        </div>
+        <div class="container">
+            <div class="flex justify-center sm:justify-center">
+                <div id="cardViewAgain" class="text-center bg-gray-400 px-5 py-2">
+                    <i class="fa fa-history fa-2x bg-white rounded-full h-16 w-16 flex justify-center"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cardView">
+        <div class="max-w-sm md:max-w-4xl rounded overflow-hidden shadow-lg m-auto bg-bluem1">
+            <div class="flex justify-between md:justify-between">
+                <div class="font-mono text-left font-bold text-md mx-2 my-1 p-1 rounded-lg md:pr-32">
+                    Current Score: <span id="userCurrentScore">0</span>
+                </div>
+                <div class="font-mono text-right font-bold text-md mx-2 my-1 p-1 rounded-lg md:mr-6">
+                    High Score: <span id="userHighScore">0</span>
+                </div>
+            </div>
+            <div class="md:flex md:justify-around">
+                <img id="moviePoster"
+                    class="w-auto h-screen/7 mt-1 m-auto rounded-lg shadow-3xl md:ml-10 md:mb-12 md:mr-6" src="" />
+                <div class="md:block md:m-auto md:mt-15">
+                    <div class="px-6 py-3">
+                        <div class="font-mono text-left font-bold text-sm my-2 md:text-left">
+                            Enter a movie with this actor:
+                        </div>
+                        <div id="computerSubmision"
+                            class="font-mono text-center font-bold text-xl md:text-3xl md:mb-3 m-auto mb-2 bg-lime1 my-2 p-2 md:p-2 md:py-2 md:px-8 rounded-lg">
+                            Enter an Actor to get started!
+                        </div>
+                        <div class="flex">
+                            <div id="userTextField"
+                                class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 py-2 w-4/5 md:5/5">
+                                <input id="userInput"
+                                    class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full px-1 text-gray-700 py-3 leading-tight focus:outline-none"
+                                    type="text" placeholder="Enter actors name" aria-label="Full name" />
+                            </div>
+                            <button id="userSubmit"
+                                class="flex-initial rounded-full h-14 w-14 flex items-center justify-center w-1/5 focus:outline-none">
+                                <i class="fa fa-arrow-up fa-2x"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="grouping" class="flex justify-around h-screen/6">
+                        <button id="life1" class="rounded-full flex items-center justify-center focus:outline-none">
+                            <i class="fa fa-heart fa-2x"></i>
+                        </button>
+                        <button id="life2" class="rounded-full flex items-center justify-center focus:outline-none">
+                            <i class="fa fa-heart fa-2x"></i>
+                        </button>
+                        <button id="life3" class="rounded-full flex items-center justify-center focus:outline-none">
+                            <i class="fa fa-heart fa-2x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="script.js "></script>
+    <script src="scripts/guessingactors.js"></script>
+</body>
+
+</html>

@@ -176,7 +176,7 @@ function displayActor(actorid) {
         console.log(response);
 
         //console.log(response);
-        if (response.profile_path && (response.popularity > 8)) {
+        if (response.profile_path && (response.popularity > 10)) {
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500/" + response.profile_path);
             $("#computerSubmision").text(response.name);
             console.log("random actor id ");
@@ -305,7 +305,7 @@ function checkAnswer() {
     console.log(moviesObjects);
 
     for (var q = 0; q < moviesObjects.length; q++) {
-        if (userInput === moviesObjects[q][0].title) {
+        if (userInput.toLowerCase() === moviesObjects[q][0].title.toLowerCase()) {
             console.log("success");
             moviesObjectsIndex = q;
             currentScore++;
@@ -325,6 +325,10 @@ function checkAnswer() {
 
 
 }
+
+function clearString(q) {
+
+};
 
 
 //For testing response data
