@@ -176,7 +176,7 @@ function displayActor(actorid) {
         console.log(response);
 
         //console.log(response);
-        if (response.profile_path) {
+        if (response.profile_path && (response.popularity > 8)) {
             $("#moviePoster").attr("src", "https://image.tmdb.org/t/p/w500/" + response.profile_path);
             $("#computerSubmision").text(response.name);
             console.log("random actor id ");
@@ -184,7 +184,7 @@ function displayActor(actorid) {
             getFilmography(response.id);
         }
         else {
-            chooseNextActor();
+            chooseNextActor(actorId);
         }
 
 
