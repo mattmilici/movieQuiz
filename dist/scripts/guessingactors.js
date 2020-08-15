@@ -3,6 +3,7 @@ var MovieCastArray = [];
 var userAnswersArray = [];
 var ComputerMovieIdArray = [];
 var apiKey = "api_key=a610c6a9537cc833aef3465e46fba9e6&language=en-US&query";
+var giphyAPI = "1I9K6gwnF2ljgEW2mzK2VdGc4CU7iX8g";
 var apiDomain = "https://api.themoviedb.org/3/"; //score related items
 var remainingLife = 3;
 var currentScore = 0; //Button Pressed by user to submit an answer
@@ -19,9 +20,13 @@ function standardGame() {
         console.log(userAnswersArray);
     }
 } //firstRoundScript takes the users input and generate a movie they've been in based off of the actors ID. We then run the getListMoviesFromActorID to ger a list of the movies the actors been in.
-function firstRound() {
+function firstRound(answer) {
+    if (answer == undefined || answer == null){
+        userInput = $("#userInput").val();
+    }else {
+        userInput = answer;
+    }
     //creates an array of user answers. This is how we can make sure the user doesn't enter the same actor twice in one game
-    userInput = $("#userInput").val();
     // userAnswersArray.push(userInput);
     // console.log(userAnswersArray);
     //call request from movie API
@@ -129,6 +134,8 @@ function getMovieCastMembers(movieID) {
         //Clears user text input
         $("#userInput").val("");
     });
+
+
 }
 
 function secondRoundForward() {
@@ -137,15 +144,25 @@ function secondRoundForward() {
     var repeatAnswer = userAnswersArray.indexOf(userInput);
     // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
     var answerCheck = MovieCastArray.indexOf(userInput);
+    var isvalidanswer = false;
+    var answer;
+    MovieCastArray.forEach(function(item){
+        if(item.levenstein(userInput) <=2){
+            isvalidanswer = true;
+            answer = item;
+        }
+    });
+
     // console.log(repeatAnswer);
     // console.log(answerCheck);
-    if (answerCheck !== -1 && repeatAnswer === -1) {
-        userAnswersArray.push(userInput);
+    // if (answerCheck !== -1 && repeatAnswer === -1) {
+        if (isvalidanswer && repeatAnswer === -1){
+        userAnswersArray.push(answer);
         //Adds 1 to the user Score
         currentScore++;
         $("#userCurrentScore").text(currentScore);
         //Runs the first round script again
-        firstRound();
+        firstRound(answer);
         //Clears user text input
         // $("#userInput").val("");
     } else if (remainingLife > 1) {
@@ -161,7 +178,8 @@ function secondRoundForward() {
         $("#computerSubmision").text(
             "incorrect you lose! Enter a name below to restart!"
         );
-        $("#moviePoster").attr("src", ""); //Clears out users data
+        // $("#moviePoster").attr("src", ""); //Clears out users data
+        postGif();
         userAnswersArray = [];
         ComputerMovieIdArray = [];
         //updates highscore if the users current game is better
@@ -178,4 +196,34 @@ function secondRoundForward() {
         userAnswersArray = [];
         MovieCastArray = [];
     }
+}
+
+// Allowing some eddit distance for typos
+String.prototype.levenstein = function (string) {
+    var a = this, b = string + "", m = [], i, j, min = Math.min;
+    if (!(a && b)) return (b || a).length;
+    for (i = 0; i <= b.length; m[i] = [i++]);
+    for (j = 0; j <= a.length; m[0][j] = j++);
+    for (i = 1; i <= b.length; i++) {
+        for (j = 1; j <= a.length; j++) {
+            m[i][j] = b.charAt(i - 1) == a.charAt(j - 1)
+                ? m[i - 1][j - 1]
+                : m[i][j] = min(
+                    m[i - 1][j - 1] + 1,
+                    min(m[i][j - 1] + 1, m[i - 1][j]))
+        }
+    }
+    return m[b.length][a.length];
+}
+
+function postGif() {
+    let query = "you lose";
+    let giphyQuery = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPI + "&q=" + query + "&limit=25&offset=0&rating=g&lang=en";
+    $.ajax({
+        url : giphyQuery,
+        method: "GET"
+    }).then(function(response) {
+        let randomIndex = Math.floor(Math.random() * (response.data.length - 1));
+        $("#moviePoster").attr("src", response.data[randomIndex].images.original.url);
+    });
 }
