@@ -169,11 +169,17 @@ function secondRoundForward() {
         $("#computerSubmision").text(
             "Nope! You now have " + (remainingLife - 1) + " lives left"
         );
-        $("#computerSubmision").effect(
+        $("#moviePoster").effect(
             "shake", "show", "slow"
         );
-        $("#life" + remainingLife).hide();
+        $("#computerSubmision").effect(
+            "bounce", "show", "slow"
+        );
+        $("#life" + remainingLife).hide(
+            "explode"    
+        );
         remainingLife--;
+
         //Clears user text input
         $("#userInput").val("");
     } else {
