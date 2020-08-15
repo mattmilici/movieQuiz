@@ -88,6 +88,9 @@ function getListOfMoviesFromActorID(actorIdNumber) {
                 "src",
                 "https://image.tmdb.org/t/p/w500" + moviePoster
             );
+            $("#moviePoster").effect(
+                "slide", "show", "slow"
+            );
             $("#computerSubmision").text(movieTitle);
             console.log("there is a movie title");
             getMovieCastMembers(movieID);
