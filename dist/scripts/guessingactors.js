@@ -169,6 +169,9 @@ function secondRoundForward() {
         $("#computerSubmision").text(
             "Nope! You now have " + (remainingLife - 1) + " lives left"
         );
+        $("#computerSubmision").effect(
+            "shake", "show", "slow"
+        );
         $("#life" + remainingLife).hide();
         remainingLife--;
         //Clears user text input
