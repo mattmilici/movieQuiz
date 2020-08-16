@@ -162,7 +162,7 @@ var answer;
 
 function secondRoundForward() {
     // gets the users current input
-    // userInput = $("#userInput").val();
+    userInput = $("#userInput").val();
     // checks to make sure that it is not on the array of answers by making sure this function returns a -1
     var repeatAnswer = userAnswersArray.indexOf(userInput);
     // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
