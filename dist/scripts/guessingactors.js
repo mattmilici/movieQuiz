@@ -18,9 +18,9 @@ function standardGame() {
         userInput = $("#userInput").val();
         userAnswersArray.push(userInput);
         remainingLife = 3;
-        $('#life1').show();
-        $('#life2').show();
-        $('#life3').show();
+        $("#life1").show();
+        $("#life2").show();
+        $("#life3").show();
         firstRound();
     }
     if (movieArrayLength !== 0) {
@@ -29,19 +29,17 @@ function standardGame() {
     }
 } //firstRoundScript takes the users input and generate a movie they've been in based off of the actors ID. We then run the getListMoviesFromActorID to ger a list of the movies the actors been in.
 function firstRound(answer) {
-    console.log(answer)
-    console.log(userInput)
-    if (userAnswersArray.indexOf(userInput) !== -1){
+    console.log(answer);
+    console.log(userInput);
+    if (userAnswersArray.indexOf(userInput) !== -1) {
         userInput = userInput;
-    }
-    else if (answer === undefined || answer === null){
+    } else if (answer === undefined || answer === null) {
         userInput = $("#userInput").val();
-    }
-    else {
+    } else {
         userInput = answer;
     }
-    console.log(answer)
-    console.log(userInput)
+    console.log(answer);
+    console.log(userInput);
     //creates an array of user answers. This is how we can make sure the user doesn't enter the same actor twice in one game
     // userAnswersArray.push(userInput);
     // console.log(userAnswersArray);
@@ -54,9 +52,9 @@ function firstRound(answer) {
             userInput +
             "&page=1&include_adult=false",
         method: "GET",
-    }).then(function (e) {
-         actorIdNumber = e.results[0].id;
-         console.log(userInput)
+    }).then(function(e) {
+        actorIdNumber = e.results[0].id;
+        console.log(userInput);
         getListOfMoviesFromActorID(actorIdNumber);
     });
 }
@@ -72,16 +70,16 @@ function getListOfMoviesFromActorID(actorIdNumber) {
             apiKey +
             "&language=en-US",
         method: "GET",
-    }).then(function (movieList) {
+    }).then(function(movieList) {
         console.log(actorIdNumber);
         //setting a random movie title on screen. This represents the computers answers and will always be a movie the actor was in.
         console.log(movieList);
         var randomNumber = Math.floor(Math.random() * 5);
         console.log(randomNumber);
         var movieCastArrayLength = movieList.cast.length - 1;
-        if (movieCastArrayLength === -1){
+        if (movieCastArrayLength === -1) {
             userWins();
-        }else if (randomNumber > movieCastArrayLength) {
+        } else if (randomNumber > movieCastArrayLength) {
             firstRound();
         }
         var movieTitle = movieList.cast[randomNumber].title;
@@ -108,9 +106,7 @@ function getListOfMoviesFromActorID(actorIdNumber) {
                 "src",
                 "https://image.tmdb.org/t/p/w500" + moviePoster
             );
-            $("#moviePoster").effect(
-                "slide", "show", "slow"
-            );
+            $("#moviePoster").effect("slide", "show", "slow");
             $("#computerSubmision").text(movieTitle);
             console.log("there is a movie title");
             getMovieCastMembers(movieID);
@@ -144,7 +140,7 @@ function getMovieCastMembers(movieID) {
             apiKey +
             "&page=1&include_adult=false",
         method: "GET",
-    }).then(function (result) {
+    }).then(function(result) {
         //this provides the first 40 actors listed on the cast sheet. We can increase this if needed.
         console.log(movieID);
         MovieCastArray = [];
@@ -160,32 +156,31 @@ function getMovieCastMembers(movieID) {
         //Clears user text input
         $("#userInput").val("");
     });
-
-
 }
 
 var answer;
 
 function secondRoundForward() {
     // gets the users current input
-    userInput = $("#userInput").val(); // checks to make sure that it is not on the array of answers by making sure this function returns a -1
+    // userInput = $("#userInput").val();
+    // checks to make sure that it is not on the array of answers by making sure this function returns a -1
     var repeatAnswer = userAnswersArray.indexOf(userInput);
     // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
     var answerCheck = MovieCastArray.indexOf(userInput);
     var isvalidanswer = false;
-    MovieCastArray.forEach(function(item){
-        if(item.levenstein(userInput) <=2){
+    MovieCastArray.forEach(function(item) {
+        if (item.levenstein(userInput) <= 2) {
             isvalidanswer = true;
             answer = item;
-        }else{
-        answer = answer;
+        } else {
+            answer = answer;
         }
     });
 
     // console.log(repeatAnswer);
     // console.log(answerCheck);
     // if (answerCheck !== -1 && repeatAnswer === -1) {
-        if (isvalidanswer && repeatAnswer === -1){
+    if (isvalidanswer && repeatAnswer === -1) {
         userAnswersArray.push(answer);
         //Adds 1 to the user Score
         currentScore++;
@@ -201,19 +196,14 @@ function secondRoundForward() {
         // $("#moviePoster").effect(
         //     "shake", "show", "slow"
         // );
-        $("#computerSubmision").effect(
-            "bounce", "show", "slow"
-        );
-        $("#life" + remainingLife).hide(
-            "explode", { duration: 1000 }, "slow", 
-        );
+        $("#computerSubmision").effect("bounce", "show", "slow");
+        $("#life" + remainingLife).hide("explode", { duration: 1000 }, "slow");
         remainingLife--;
         ComputerMovieIdArray.push(movieID);
-        getListOfMoviesFromActorID(actorIdNumber)
+        getListOfMoviesFromActorID(actorIdNumber);
 
         //Clears user text input
         $("#userInput").val("");
-
     } else {
         //Tells the user they were wrong and asks them to restart by typing a name. Also removes the movie poster
         $("#computerSubmision").text(
@@ -240,31 +230,46 @@ function secondRoundForward() {
 }
 
 // Allowing some eddit distance for typos
-String.prototype.levenstein = function (string) {
-    var a = this, b = string + "", m = [], i, j, min = Math.min;
+String.prototype.levenstein = function(string) {
+    var a = this,
+        b = string + "",
+        m = [],
+        i,
+        j,
+        min = Math.min;
     if (!(a && b)) return (b || a).length;
     for (i = 0; i <= b.length; m[i] = [i++]);
     for (j = 0; j <= a.length; m[0][j] = j++);
     for (i = 1; i <= b.length; i++) {
         for (j = 1; j <= a.length; j++) {
-            m[i][j] = b.charAt(i - 1) == a.charAt(j - 1)
-                ? m[i - 1][j - 1]
-                : m[i][j] = min(
+            m[i][j] =
+                b.charAt(i - 1) == a.charAt(j - 1) ?
+                m[i - 1][j - 1] :
+                (m[i][j] = min(
                     m[i - 1][j - 1] + 1,
-                    min(m[i][j - 1] + 1, m[i - 1][j]))
+                    min(m[i][j - 1] + 1, m[i - 1][j])
+                ));
         }
     }
     return m[b.length][a.length];
-}
+};
 
 function postGif() {
     let query = "you lose";
-    let giphyQuery = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyAPI + "&q=" + query + "&limit=25&offset=0&rating=g&lang=en";
+    let giphyQuery =
+        "https://api.giphy.com/v1/gifs/search?api_key=" +
+        giphyAPI +
+        "&q=" +
+        query +
+        "&limit=25&offset=0&rating=g&lang=en";
     $.ajax({
-        url : giphyQuery,
-        method: "GET"
+        url: giphyQuery,
+        method: "GET",
     }).then(function(response) {
         let randomIndex = Math.floor(Math.random() * (response.data.length - 1));
-        $("#moviePoster").attr("src", response.data[randomIndex].images.original.url);
+        $("#moviePoster").attr(
+            "src",
+            response.data[randomIndex].images.original.url
+        );
     });
 }
