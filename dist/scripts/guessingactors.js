@@ -13,6 +13,10 @@ function standardGame() {
     if (movieArrayLength === 0) {
         var userInput = $("#userInput").val();
         userAnswersArray.push(userInput);
+        remainingLife = 3;
+        $('#life1').show();
+        $('#life2').show();
+        $('#life3').show();
         firstRound();
     }
     if (movieArrayLength !== 0) {
@@ -61,7 +65,9 @@ function getListOfMoviesFromActorID(actorIdNumber) {
         var randomNumber = Math.floor(Math.random() * 4);
         console.log(randomNumber);
         var movieCastArrayLength = movieList.cast.length - 1;
-        if (randomNumber > movieCastArrayLength) {
+        if (movieCastArrayLength === -1){
+            userWins();
+        }else if (randomNumber > movieCastArrayLength) {
             firstRound();
         }
         var movieTitle = movieList.cast[randomNumber].title;
@@ -69,7 +75,7 @@ function getListOfMoviesFromActorID(actorIdNumber) {
         console.log(MovieRepeatCheck); //Grabs the poster for the movie generated above and displays it on screen.        //this gets a list of Actors that were in the movie
         var movieID = movieList.cast[randomNumber].id;
         var MovieRepeatCheck = ComputerMovieIdArray.indexOf(movieID);
-        if (movieCastArrayLength === 0 && MovieRepeatCheck !== -1) {
+        if (movieCastArrayLength <= 0 && MovieRepeatCheck !== -1) {
             userWins();
         } else if (
             MovieRepeatCheck !== -1 ||
@@ -102,6 +108,11 @@ function userWins() {
     $("#computerSubmision").text(
         "Dang! I can't think of anything.... you win! Enter a another actors name to play again!"
     );
+    let userHighScore = parseInt($("#userHighScore").text());
+    let userCurrentScore = parseInt($("#userCurrentScore").text());
+    if (userCurrentScore > userHighScore) {
+        $("#userHighScore").text(userCurrentScore);
+    }
     currentScore = 0;
     $("#userCurrentScore").text(currentScore);
     //Clears user text input
@@ -176,7 +187,7 @@ function secondRoundForward() {
             "bounce", "show", "slow"
         );
         $("#life" + remainingLife).hide(
-            "explode"    
+            "explode", { duration: 1000 }, "slow", 
         );
         remainingLife--;
 
