@@ -22,7 +22,7 @@
 
             <div id="roundsHeader" class="flex justify-between animate-bounce opactiy-100">
                 <div class="font-mono text-left font-bold text-md mx-2 my-1 p-1 rounded-lg">
-                    Round: <span id="userCurrentScore">1</span>
+                    Current Score: <span id="userCurrentScore">1</span>
                 </div>
                 <div class="font-mono text-right font-bold text-md mx-2 my-1 p-1 rounded-lg">
                     High Score: <span id="userCurrentScore">1</span>
@@ -33,27 +33,7 @@
                 <div id="currentMovieTitle" class="opacity-25 font-mono text-center font-bold text-xl m-auto mb-2 bg-lime1 my-2 p-2 rounded-lg">
                     Anchorman
                 </div>
-                <div id="multipleChoiceDiv" class="pt-5">
-                    <div class="flex justify-around m-2">
-                        <button id="actor1" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
-								Chase Roossin
-							</button>
-                        <button id="actor2" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
-								Chase Roossin
-							</button>
-                    </div>
-                    <div class="flex justify-around m-2">
-                        <button id="actor3" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
-								Chase Roossin
-							</button>
-                        <button id="actor4" class="font-bold text-md m-auto mb-2 bg-lime1 mb-1 p-1 rounded-lg min-w-8">
-								Chase Roossin
-							</button>
-                    </div>
-                    <button id="submitBtnMultiple" class="rounded-full flex justify-center m-auto cursor-not-allowed focus:outline-none">
-							<i class="fa fa-arrow-up fa-2x"></i>
-						</button>
-                </div>
+
                 <div class="flex">
                     <div id="userTextField" class="flex-shrink-0 flex-initial text-gray-800 text-center bg-gray-500 px-1 py-2 w-4/5 opacity-25 cursor-not-allowed">
                         <input class="min-w-64 rounded-full appearance-none bg-transparent border-none w-full text-gray-700 py-3 px-2 leading-tight focus:outline-none cursor-not-allowed focus:outline-none" type="text" placeholder="Enter actors name" aria-label="Full name" />
@@ -63,17 +43,19 @@
 						</button>
                 </div>
             </div>
-            <div id="grouping" class="flex justify-around h-screen/6">
-                <button id="multipleChoice" class="opacity-25 rounded-full flex items-center justify-center cursor-not-allowed focus:outline-none">
-						<i class="fa fa-ambulance fa-2x"></i>
+            <div id="hideBtn" class="flex justify-around h-screen/6 opacity-25">
+                <button class=" rounded-full flex items-center justify-center cursor-not-allowed focus:outline-none">
+                    <i class="fa fa-heart fa-2x"></i>
 					</button>
-
-                <button id="hideBtn" class="opacity-25 rounded-full flex items-center justify-center cursor-not-allowed focus:outline-none">
-						<i class="fa fa-history fa-2x"></i>
+                <button i class=" rounded-full flex items-center justify-center cursor-not-allowed focus:outline-none">
+                        <i class="fa fa-heart fa-2x"></i>
+                        </button>
+                <button class=" rounded-full flex items-center justify-center cursor-not-allowed focus:outline-none">
+                    <i class="fa fa-heart fa-2x"></i>
 					</button>
             </div>
             <!-- //------------------------ instructions button ----------------------------// -->
-            <div id="UserInstructionsDiv" class="bg-blueLight1 absolute bottom-0 left-0 rounded-t-lg">
+            <div id="UserInstructionsDiv" class="bg-blueLight1 absolute bottom-0 left-0 right-0 rounded-t-lg">
                 <div class="flex justify-between border">
                     <div class="bg-blue-100 border-blue-500 text-blue-700 px-4 py-3" role="alert">
                         <p id="instructionsHeader" class="font-bold text-left">
@@ -95,5 +77,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
     <script src="howto.js "></script>
 </body>
+
+</html>
 
 </html>

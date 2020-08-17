@@ -90,44 +90,23 @@ $(document).ready(function() {
             $("#instructionsDescr").text(
                 "This is where you enter your answer and submit your answer. PS Make sure the spelling is correct!"
             );
-            $("#nextButton").addClass("nextButton3");
+            $("#nextButton").addClass("nextButton4");
             $("#nextButton").removeClass("nextButton2");
-        } else if (currentClass.hasClass("nextButton3")) {
+        } else if (currentClass.hasClass("nextButton4")) {
             $("#userTextField").removeClass("animate-bounce");
-            $("#startTyping").removeClass("animate-bounce");
-
             $("#userTextField").addClass("opacity-25");
             $("#userTextField").removeClass("opacity-100");
 
+            $("#startTyping").removeClass("animate-bounce");
             $("#startTyping").addClass("opacity-25");
             $("#startTyping").removeClass("opacity-100");
-
-            $("#startTyping").addClass("opacity-25");
-            $("#startTyping").removeClass("opacity-100");
-
-            $("#multipleChoice").addClass("animate-bounce");
-            $("#multipleChoice").removeClass("opacity-25");
-            $("#multipleChoice").addClass("opacity-100");
-
-            $("#instructionsHeader").text("Life Line");
-            $("#instructionsDescr").text(
-                "This button provides 4 multiple choice answers. Be careful! You only get three life lines per game!"
-            );
-            $("#nextButton").addClass("nextButton4");
-            $("#nextButton").removeClass("nextButton3");
-        } else if (currentClass.hasClass("nextButton4")) {
-            $("#multipleChoice").removeClass("animate-bounce");
-            $("#multipleChoice").addClass("opacity-25");
-            $("#multipleChoice").removeClass("opacity-100");
 
             $("#hideBtn").addClass("animate-bounce");
             $("#hideBtn").removeClass("opacity-25");
             $("#hideBtn").addClass("opacity-100");
 
-            $("#instructionsHeader").text("Game History");
-            $("#instructionsDescr").text(
-                "Check out the current games history and see all your responses!"
-            );
+            $("#instructionsHeader").text("Remaining Life");
+            $("#instructionsDescr").text("You start each game with Three lives");
             $("#nextButton").addClass("nextButton5");
             $("#nextButton").removeClass("nextButton4");
         } else if (currentClass.hasClass("nextButton5")) {
@@ -150,6 +129,6 @@ $(document).ready(function() {
     $(document).on("click", "#playBtn", changePage);
 
     function changePage() {
-        location.href = "playing.html";
+        location.href = "guessingactors.html";
     }
 });

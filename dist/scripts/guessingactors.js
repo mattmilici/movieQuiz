@@ -20,6 +20,8 @@ $(document).ready(function() {
             userInput = $("#userInput").val();
             userAnswersArray.push(userInput);
             remainingLife = 3;
+
+            $("#startingText").text("Enter an actor that is in this Movie:");
             $("#life1").show();
             $("#life2").show();
             $("#life3").show();
@@ -27,6 +29,7 @@ $(document).ready(function() {
             firstRound();
         }
         if (movieArrayLength !== 0) {
+            $("#startingText").text("Enter an actor that is in this Movie:");
             secondRoundForward();
             console.log(userAnswersArray);
         }
@@ -240,9 +243,10 @@ $(document).ready(function() {
             //Clears user text input
             $("#userInput").val("");
         } else {
+            $("#WhyYouLost").text("You lose! Your final score was " + currentScore);
             //Tells the user they were wrong and asks them to restart by typing a name. Also removes the movie poster
             $("#computerSubmision").text(
-                "incorrect you lose! Enter a name below to restart!"
+                "You're out of lives! Enter a name below to restart!"
             );
             // $("#moviePoster").attr("src", ""); //Clears out users data
             postGif();
