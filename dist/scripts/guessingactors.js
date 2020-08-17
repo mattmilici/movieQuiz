@@ -12,6 +12,7 @@ var movieID;
 var userInput;
 var previousAnswer;
 $("#userSubmit").on("click", standardGame); //StandardGame function is what determines if the first or second round script should run. If the movie cast array equals zero, then computer knows to run the firstRound Script which will not provide any points. The seconds round script will run after that and check to make sure the user isn't inputting the same actor twice. It also adds points to the current score.
+
 function standardGame() {
     var movieArrayLength = MovieCastArray.length;
     if (movieArrayLength === 0) {
@@ -86,7 +87,7 @@ function getListOfMoviesFromActorID(actorIdNumber) {
         var moviePoster = movieList.cast[randomNumber].poster_path;
         movieID = movieList.cast[randomNumber].id;
         var MovieRepeatCheck = ComputerMovieIdArray.indexOf(movieID);
-        console.log(MovieRepeatCheck); //Grabs the poster for the movie generated above and displays it on screen.        //this gets a list of Actors that were in the movie
+        // console.log(MovieRepeatCheck); //Grabs the poster for the movie generated above and displays it on screen.        //this gets a list of Actors that were in the movie
         if (movieCastArrayLength <= 0 && MovieRepeatCheck !== -1) {
             userWins();
         } else if (
@@ -108,7 +109,7 @@ function getListOfMoviesFromActorID(actorIdNumber) {
             );
             $("#moviePoster").effect("slide", "show", "slow");
             $("#computerSubmision").text(movieTitle);
-            console.log("there is a movie title");
+            // console.log("there is a movie title");
             getMovieCastMembers(movieID);
         }
     });
@@ -161,12 +162,17 @@ function getMovieCastMembers(movieID) {
 var answer;
 
 function secondRoundForward() {
+    console.log(userInput);
+    check = $("#userInput").val();
     // gets the users current input
-    userInput = $("#userInput").val();
+    if (check !== "") {
+        userInput = $("#userInput").val();
+    }
+    console.log(userInput);
     // checks to make sure that it is not on the array of answers by making sure this function returns a -1
     var repeatAnswer = userAnswersArray.indexOf(userInput);
     // checks to make sure that the actor is on the array of answers by making sure this function does not return -1
-    var answerCheck = MovieCastArray.indexOf(userInput);
+    // var answerCheck = MovieCastArray.indexOf(userInput);
     var isvalidanswer = false;
     MovieCastArray.forEach(function(item) {
         if (item.levenstein(userInput) <= 2) {
@@ -199,6 +205,7 @@ function secondRoundForward() {
         $("#computerSubmision").effect("bounce", "show", "slow");
         $("#life" + remainingLife).hide("explode", { duration: 1000 }, "slow");
         remainingLife--;
+        console.log(userInput);
         ComputerMovieIdArray.push(movieID);
         getListOfMoviesFromActorID(actorIdNumber);
 
