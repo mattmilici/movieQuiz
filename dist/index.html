@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
 </head>
@@ -19,11 +19,11 @@
                 Let's test your movie knowledge!
             </p>
             <a href="howto.html">
-                <button class="m-auto block w-32 my-5 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none">
+                <button class="m-auto block w-32 my-5 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none" title="If this is your first time, learn to play here!">
 						How to Play!
 					</button></a>
             <a id="startPlayingButton">
-                <button class="block m-auto my-5 w-32 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none">
+                <button class="block m-auto my-5 w-32 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none" title="Press this if you want want to go straight into the action!">
 						Start Playing!
 					</button></a>
         </div>
@@ -35,16 +35,17 @@
                 Do you want to name movies or actors?
             </p>
             <a href="guessingmovies.html">
-                <button class="m-auto block w-32 my-5 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none">
+                <button class="m-auto block w-32 my-5 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none" title="We will give you an actor and you will have to guess a movie that that actor has been in.">
 						Movies
 					</button></a>
             <a href="guessingactors.html">
-                <button class="block m-auto my-5 w-32 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none">
+                <button class="block m-auto my-5 w-32 p-2 bg-bluem1 text-white rounded-full font-bold focus:outline-none" title="We will give you a movie and you will have to guess an actor that has been in that movie.">
 						Actors
 					</button></a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="script.js "></script>
 </body>
 
