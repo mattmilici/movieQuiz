@@ -192,7 +192,7 @@ $(document).ready(function() {
         // console.log(answerCheck);
         // if (answerCheck !== -1 && repeatAnswer === -1) {
         if (isvalidanswer && repeatAnswer === -1) {
-            $("#WhyYouLost").text(userInput + " was correct!");
+            $("#WhyYouLost").text(answer + " was correct!");
             userAnswersArray.push(answer);
             //Adds 1 to the user Score
             currentScore++;
