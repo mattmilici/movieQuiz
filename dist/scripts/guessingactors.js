@@ -366,4 +366,7 @@ $(document).ready(function() {
             source: actorsNames,
         });
     });
+    $( function() {
+        $( document ).tooltip();
+      } );
 });

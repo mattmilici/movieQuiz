@@ -43,6 +43,9 @@ $(document).ready(function() {
         $("#grouping").show();
         $("#multipleChoiceDiv").hide();
     }
+    $( function() {
+        $( document ).tooltip();
+      } );
 });
 
 //all new

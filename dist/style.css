@@ -40545,6 +40545,7 @@ video {
   }
 }
 
+/* This will keep the Autocomplete functionality 3 names long and allowing the user to scroll through the names */
 .ui-autocomplete {
   max-height: 100px;
   overflow-y: auto;
@@ -40556,4 +40557,9 @@ video {
  */
 * html .ui-autocomplete {
   height: 100px;
+}
+
+label {
+  display: inline-block;
+  width: 5em;
 }
