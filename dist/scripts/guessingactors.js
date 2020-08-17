@@ -226,7 +226,7 @@ $(document).ready(function() {
             $("#userInput").val("");
         } else if (remainingLife > 1 && $("#userInput").val() !== "") {
             $("#WhyYouLost").text(
-                "You either said them already or they aren't in the movie. " +
+                "You said them already or they aren't in the movie. " +
                 (remainingLife - 1) +
                 " lives left"
             );
