@@ -129,6 +129,6 @@ $(document).ready(function() {
     $(document).on("click", "#playBtn", changePage);
 
     function changePage() {
-        location.href = "guessingactors.html";
+        location.href = "index.html";
     }
 });
