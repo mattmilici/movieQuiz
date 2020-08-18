@@ -46,9 +46,6 @@ $(document).ready(function() {
     $( function() {
         $( document ).tooltip();
       } );
-      $('.tooltip').on('touchend', function() {
-        window.location = $(this).attr('href');
-      });
 });
 
 //all new
