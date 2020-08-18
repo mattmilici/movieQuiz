@@ -40559,7 +40559,7 @@ video {
   height: 100px;
 }
 
-label {
-  display: inline-block;
-  width: 5em;
+.ui-tooltip {
+  background-color: black;
+  color: white;
 }
