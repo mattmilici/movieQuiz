@@ -20,6 +20,10 @@ $(document).ready(function() {
         }
     }
 
+    $("#howtoButton").on("click", function(event){
+        event.stopPropagation()
+    })
+
     function multipleChoice() {
         var buttonStatus = $("#multipleChoice").attr("id");
 

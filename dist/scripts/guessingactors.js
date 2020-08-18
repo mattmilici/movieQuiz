@@ -11,7 +11,14 @@ $(document).ready(function() {
     var actorIdNumber;
     var movieID;
     var userInput;
-    var previousAnswer;
+    var userCurrentScore = JSON.parse(localStorage.getItem("userHighScore")) || 0;
+
+    $(document).ready(function() {
+        $("#userHighScore").text(userCurrentScore)
+    });
+
+    console.log(userCurrentScore)
+
     $("#userSubmit").on("click", standardGame); //StandardGame function is what determines if the first or second round script should run. If the movie cast array equals zero, then computer knows to run the firstRound Script which will not provide any points. The seconds round script will run after that and check to make sure the user isn't inputting the same actor twice. It also adds points to the current score.
 
     function standardGame() {
@@ -128,6 +135,7 @@ $(document).ready(function() {
         let userCurrentScore = parseInt($("#userCurrentScore").text());
         if (userCurrentScore > userHighScore) {
             $("#userHighScore").text(userCurrentScore);
+            localStorage.setItem("userHighScore", JSON.stringify(userCurrentScore));
         }
         currentScore = 0;
         $("#userCurrentScore").text(currentScore);
@@ -257,6 +265,7 @@ $(document).ready(function() {
             let userCurrentScore = parseInt($("#userCurrentScore").text());
             if (userCurrentScore > userHighScore) {
                 $("#userHighScore").text(userCurrentScore);
+                localStorage.setItem("userHighScore", JSON.stringify(userCurrentScore));
             }
             $("#life1").hide(); //Sets current score equal to zero again
             currentScore = 0;
@@ -361,12 +370,31 @@ $(document).ready(function() {
             "Will Smith",
             "Adam Sandler",
             "Robert Downey Jr.",
+            "Chris Evans",
+            "Jennifer Lawrence",
+            "Morgot Robbie",
+            "Ryan Reynolds",
+            "Scarlett Johansson",
+            "Paul Rudd",
+            "Chris Hemsworth",
+            "Dwayne Johnson",
+            "Jamie Foxx",
+            "Emma Stone",
+            "Nicolas Cage",
+            "Chris Pratt",
+            "Ben Stiller",
+            "Vin Diesel",
+            "Charlize Theron",
+            "Mark Wahlberg",
+            "Jennifer Aniston",
+            "Sandra Bullock"
         ];
         $("#userInput").autocomplete({
             source: actorsNames,
         });
     });
+
     $( function() {
         $( document ).tooltip();
-      } );
+      });
 });
