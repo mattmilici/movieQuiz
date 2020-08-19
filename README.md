@@ -10,9 +10,11 @@ We used the Tailwind CSS framework, The Movie Database API, Giphy API, and JQuer
 
 ## User Story
 
-As an avid movie watcher
-I WANT to play a game that will allow me to guess an actor that has been in a movie 
-So THAT I can gauge my score compared to my friends and gain bragging rights
+AS an avid movie watcher.
+
+I WANT to play a game that will allow me to guess an actor that has been in a movie.
+
+So THAT I can gauge my score compared to my friends and gain bragging rights.
 
 ## Usage
 
@@ -24,7 +26,7 @@ To learn how to play the game, the user can click on "How to Play!" for a quick 
 
 ![How to play page.](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/How_to.PNG)
 
-At the end of the tutorial, the user can click on "Start Playing!" where they will be given a choice to choose either to name movies or actors. 
+At the end of the tutorial, the user can click on "Start Playing!" where they will be given a choice between naming movies or actors. 
 
 ![Do you want to name movies or actors?](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/MoviesOrActors.PNG)
 
@@ -36,7 +38,7 @@ The user is then given a random actor in the previously entered movie. The user 
 
 ![Enter a movie with this Actor: Robert Downey Jr.](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies1.PNG)
 
-If the user is correct, they will be given another actor from the previously inputted movie. If they user is incorrect, they will lose a life. If the user loses 3 lives, the game is over.
+If the user is correct, they will be given another actor or actress from the previously inputted movie. If the user is incorrect, they will lose a life. If the user loses 3 lives, the game is over.
 
 ![Enter a movie this this Actress: Scarlett Johansson](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies2.PNG)
 
@@ -48,7 +50,7 @@ The user is then given a random movie that the previously entered actor has been
 
 ![Enter an actor that is in this Movie: "Anchorman: The Legend of Ron Burgundy"](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors2.PNG)
 
-If the user is correct, they will be given another movie that the previously entered actor has been in. If the user inputs an actor that was not in the movie or guesses the same actor, they will lose a life. The user can also submit a blank answer to get a new movie.
+If the user is correct, they will be given another movie that the previously entered actor has been in. If the user inputs an actor that was not in the movie or guesses the same actor, they will lose a life. The user can also submit a blank answer to get a new movie that the previously entered actor has been in.
 
 ![Incorrect Answer](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors3.PNG)
 
@@ -56,5 +58,5 @@ The game ends when the user loses their 3 lives or if the application cannot giv
 
 ![Lose GIF. You're out of lives! Enter a name below to restart!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors4.PNG)
 
-## Sources
+## Sources / Acknowledgments
 ["andrei-m / Andrei Mackenzie / levenshstein.js"](https://gist.github.com/andrei-m/982927)
