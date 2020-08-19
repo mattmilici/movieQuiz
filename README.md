@@ -1,6 +1,6 @@
 # Project 1
 
-The Movie Quiz can be found here: [https://falbuna.github.io/movieQuiz/dist/index.html](https://falbuna.github.io/movieQuiz/dist/index.html)
+The Movie Quiz can be found here: [https://mmilici-star.github.io/movieQuiz/dist/index.html](https://mmilici-star.github.io/movieQuiz/dist/index.html)
 
 ## Introduction
 

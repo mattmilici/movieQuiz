@@ -166,7 +166,7 @@ $(document).ready(function() {
             //this removes the actor the user just entered so they can't use it twice
             var MovieCastArrayPop = MovieCastArray.indexOf(userInput);
             MovieCastArray.splice(MovieCastArrayPop, 1);
-            console.log(MovieCastArray);
+            // console.log(MovieCastArray);
             //Clears user text input
             $("#userInput").val("");
         });
