@@ -8,6 +8,12 @@ We developed this application as a cool way to utilize the movie database API to
 
 We used the Tailwind CSS framework, The Movie Database API, Giphy API, and JQuery UI to build, style, and add effects to our application.
 
+## User Story
+
+As an avid movie watcher
+I WANT to play a game that will allow me to guess an actor that has been in a movie 
+So THAT I can gauge my score compared to my friends and gain bragging rights
+
 ## Usage
 
 When the user first enters this page this is what they will see.
@@ -26,7 +32,7 @@ If the user clicks on the "Movies" button, they will be given a prompt to enter 
 
 ![Enter any movie to get started!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies.PNG)
 
-The user is then given a random actor in the previously entered movie. The user will then have to enter a different moive that the actor has been in.
+The user is then given a random actor in the previously entered movie. The user will then have to enter a different movie that the actor has been in.
 
 ![Enter a movie with this Actor: Robert Downey Jr.](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies1.PNG)
 
@@ -50,5 +56,5 @@ The game ends when the user loses their 3 lives or if the application cannot giv
 
 ![Lose GIF. You're out of lives! Enter a name below to restart!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors4.PNG)
 
-## Acknowledgements
-["andrei-m / levenshstein.js"](https://gist.github.com/andrei-m/982927)
+## Sources
+["andrei-m / Andrei Mackenzie / levenshstein.js"](https://gist.github.com/andrei-m/982927)
