@@ -26,11 +26,11 @@ If the user clicks on the "Movies" button, they will be given a prompt to enter 
 
 ![Enter any movie to get started!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies.PNG)
 
-The user is then given a random actor in the previously entered movie. The user will have to enter a different moive that the actor has been in.
+The user is then given a random actor in the previously entered movie. The user will then have to enter a different moive that the actor has been in.
 
 ![Enter a movie with this Actor: Robert Downey Jr.](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies1.PNG)
 
-If the user is correct, they will be given another actor from the previous input movie. If they user is incorrect, they will lose a life. If the user loses 3 lives, the game is over.
+If the user is correct, they will be given another actor from the previously inputted movie. If they user is incorrect, they will lose a life. If the user loses 3 lives, the game is over.
 
 ![Enter a movie this this Actress: Scarlett Johansson](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies2.PNG)
 
@@ -42,10 +42,13 @@ The user is then given a random movie that the previously entered actor has been
 
 ![Enter an actor that is in this Movie: "Anchorman: The Legend of Ron Burgundy"](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors2.PNG)
 
-If the user is correct, they will be given another movie that the previously entered actor has been in. If the user in incorrect, they will lose a life.
+If the user is correct, they will be given another movie that the previously entered actor has been in. If the user inputs an actor that was not in the movie or guesses the same actor, they will lose a life. The user can also submit a blank answer to get a new movie.
 
 ![Incorrect Answer](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors3.PNG)
 
+The game ends when the user loses their 3 lives or if the application cannot give the user a new movie.
 
+![Lose GIF. You're out of lives! Enter a name below to restart!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors4.PNG)
 
 ## Acknowledgements
+["andrei-m / levenshstein.js"](https://gist.github.com/andrei-m/982927)
