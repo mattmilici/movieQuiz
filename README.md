@@ -22,4 +22,30 @@ At the end of the tutorial, the user can click on "Start Playing!" where they wi
 
 ![Do you want to name movies or actors?](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/MoviesOrActors.PNG)
 
-## Acknowledgementss
+If the user clicks on the "Movies" button, they will be given a prompt to enter any movie.
+
+![Enter any movie to get started!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies.PNG)
+
+The user is then given a random actor in the previously entered movie. The user will have to enter a different moive that the actor has been in.
+
+![Enter a movie with this Actor: Robert Downey Jr.](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies1.PNG)
+
+If the user is correct, they will be given another actor from the previous input movie. If they user is incorrect, they will lose a life. If the user loses 3 lives, the game is over.
+
+![Enter a movie this this Actress: Scarlett Johansson](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Movies2.PNG)
+
+If the user clicks on the "Actors" button, they will be given a prompt to enter an actor or actress to get started.
+
+![Enter an actor or actress!](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors.PNG)
+
+The user is then given a random movie that the previously entered actor has been in. The user will then have to input a different actor that has been in that movie.
+
+![Enter an actor that is in this Movie: "Anchorman: The Legend of Ron Burgundy"](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors2.PNG)
+
+If the user is correct, they will be given another movie that the previously entered actor has been in. If the user in incorrect, they will lose a life.
+
+![Incorrect Answer](https://github.com/mmilici-star/movieQuiz/blob/master/Assets/Actors3.PNG)
+
+
+
+## Acknowledgements
