@@ -1,4 +1,4 @@
-# Project 1
+# Movie Buff
 
 The Movie Quiz can be found here: [https://mmilici-star.github.io/movieQuiz/dist/index.html](https://mmilici-star.github.io/movieQuiz/dist/index.html)
 
